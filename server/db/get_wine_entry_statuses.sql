@@ -1,0 +1,1 @@
+select id as value, name as label from lk_wine_entry_statuses;
