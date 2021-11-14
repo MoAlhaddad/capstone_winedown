@@ -5,6 +5,7 @@ insert into wine_entries
     gws,
     ci,
     nbj,
+    color,
     country_id,
     entry_status_id,
     approved_by_expert, -- This is meaningless. All wine entries when approved will not require expert approval, but display it to not con users

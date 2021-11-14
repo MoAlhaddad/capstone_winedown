@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WineApi from '../api/wineapi';
 import Card from '../components/Card';
+import SearchFilter from '../components/SearchFilter'
 
 export default function WineList() {
   //Set wines
@@ -17,10 +18,17 @@ export default function WineList() {
     },
     []
   );
+    
+ 
 
   return (
     <div>
       <h2> Winedown List </h2>
+      <SearchFilter
+       wineList = {wines}  
+       setWinelist = {setWines} 
+      />
+
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {wines && wines.map((wine) => <Card key={wine.id} {...wine} />)}
       </div>

@@ -16,12 +16,12 @@ export default function QandA() {
 			],
 		},
 		{
-			questionText: 'What wine grade do you prefer?',
+			questionText: 'What wine type do you prefer?',
 			answerOptions: [
-				{ answerText: 'A+', isCorrect: true },
-				{ answerText: 'A', isCorrect: true },
-				{ answerText: 'A-', isCorrect: true },
-				{ answerText: 'B+', isCorrect: true },
+				{ answerText: 'red', isCorrect: true },
+				{ answerText: 'sweet', isCorrect: true },
+				{ answerText: 'dry', isCorrect: true },
+				{ answerText: 'white', isCorrect: true },
 			],
 		},
 		{

@@ -6,6 +6,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -16,6 +17,7 @@ VALUES (
         100,
         'A+',
         4,
+        'Red',
         (
             select id
             from lk_countries
@@ -30,6 +32,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -40,6 +43,7 @@ VALUES (
         100,
         'A+',
         6,
+        'Red',
         (
             select id
             from lk_countries
@@ -54,6 +58,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -64,6 +69,7 @@ VALUES (
         100,
         'A+',
         3,
+        'White',
         (
             select id
             from lk_countries
@@ -78,6 +84,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -88,6 +95,7 @@ VALUES (
         100,
         'B',
         3,
+        'Red',
 (
     select id
     from lk_countries
@@ -102,6 +110,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -111,7 +120,8 @@ VALUES (
         2005,
         100,
         'A',
-        3,   
+        3,
+        'Red'   
 (
     select id
     from lk_countries
@@ -126,10 +136,11 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
-VALUES (7, 'Chateau Lafleur, Pomerol', 1950, 100, 'A+', 4,
+VALUES (7, 'Chateau Lafleur, Pomerol', 1950, 100, 'A+', 4, 'Red'
 (
     select id
     from lk_countries
@@ -144,6 +155,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -154,6 +166,7 @@ VALUES (
         100,
         'A',
         3,
+        'White'
 (
     select id
     from lk_countries
@@ -168,6 +181,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -178,6 +192,7 @@ VALUES (
         100,
         'A',
         3,
+        'White'
 (
     select id
     from lk_countries
@@ -192,6 +207,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -202,6 +218,7 @@ VALUES (
         100,
         'A+',
         3,
+        'Red'
 (
     select id
     from lk_countries
@@ -216,6 +233,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -226,6 +244,7 @@ VALUES (
         100,
         'A+',
         6,
+        'Red'
 (
     select id
     from lk_countries
@@ -240,6 +259,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -250,6 +270,7 @@ VALUES (
         100,
         'A+',
         3,
+        'White'
 (
     select id
     from lk_countries
@@ -264,6 +285,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -274,6 +296,7 @@ VALUES (
         100,
         'A',
         4,
+        'Red'
 (
     select id
     from lk_countries
@@ -288,6 +311,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -298,6 +322,7 @@ VALUES (
         100,
         'B',
         3,
+        'Red'
 (
     select id
     from lk_countries
@@ -312,6 +337,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -322,6 +348,7 @@ VALUES (
         100,
         'A',
         3,
+        'Red'
 (
     select id
     from lk_countries
@@ -336,6 +363,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -346,6 +374,7 @@ VALUES (
         99.97,
         'A+',
         3,
+        'White'
 (
     select id
     from lk_countries
@@ -360,6 +389,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -370,6 +400,7 @@ VALUES (
         99.85,
         'B+',
         5,
+        'Red'
 (
     select id
     from lk_countries
@@ -384,6 +415,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -394,6 +426,7 @@ VALUES (
         99.82,
         'A+',
         3,
+        'Red'
 (
     select id
     from lk_countries
@@ -408,6 +441,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -418,6 +452,7 @@ VALUES (
         99.82,
         'A+',
         4,
+        'Red'
 (
     select id
     from lk_countries
@@ -432,6 +467,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -442,6 +478,7 @@ VALUES (
         99.76,
         'B+',
         4,
+        'Red'
 (
     select id
     from lk_countries
@@ -456,6 +493,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -466,6 +504,7 @@ VALUES (
         99.75,
         'A',
         6,
+        'Red'
 (
     select id
     from lk_countries
@@ -480,6 +519,7 @@ INSERT INTO wine_scores(
         gws,
         ci,
         nbj,
+        color,
         country_id,
         date_created
     )
@@ -490,6 +530,7 @@ VALUES (
         99.71,
         'A+',
         5,
+        'Red'
 (
     select id
     from lk_countries

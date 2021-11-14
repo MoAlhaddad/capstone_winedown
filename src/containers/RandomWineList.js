@@ -14,7 +14,7 @@ export default function RandomWineList(){
         () => {
             async function getRandomWines() {
                 const wineResponse = await WineApi.getRandomWines();
-                setWines(wineResponse.randomWines);
+                setWines(wineResponse?.randomWines);
             }
 
             getRandomWines();
