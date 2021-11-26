@@ -31,4 +31,22 @@ export default class WineApi {
             .catch(err => err);
     }
 
+    static filterWines(filterForm) {
+        return ajaxCallCreators.post('/filter_wines', filterForm)
+        .then(result => result)
+        .catch(err => err);
+    }
+
+    static getLkCountries() {
+        return ajaxCallCreators.get('/get_lk_countries')
+            .then(result => result)
+            .catch(err => err);
+    }
+
+    static createWine(createWineForm) {
+        return ajaxCallCreators.post('/create_wine', createWineForm)
+            .then(result => result)
+            .catch(err => err);
+    }
+
 }

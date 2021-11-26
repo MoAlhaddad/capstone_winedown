@@ -4,7 +4,7 @@ import WineApi from '../api/wineapi';
 import InputApi from '../api/inputapi';
 import Card from '../components/Card';
 import Form from '../components/Form';
-import Modal from '../components/Modal';
+import Modal from '../components/CreateWineModal';
 import { format } from 'date-fns';
 // import logo from '../public/logo.svg';
 

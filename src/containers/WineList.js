@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import WineApi from '../api/wineapi';
 import Card from '../components/Card';
 import SearchFilter from '../components/SearchFilter'
+import Paginate from '../components/Paginate';
 
 export default function WineList() {
   //Set wines
@@ -28,10 +29,12 @@ export default function WineList() {
        wineList = {wines}  
        setWinelist = {setWines} 
       />
-
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <Paginate
+        wineList={wines}
+      />
+      {/* <div style={{ display: "flex", flexWrap: "wrap" }}>
         {wines && wines.map((wine) => <Card key={wine.id} {...wine} />)}
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 module.exports = {
   getWines: (req, res) => {
     const dbInstance = req.app.get("db");
-    console.log("Db Instance get all wines", dbInstance);
     return dbInstance
       .get_all_wines()
       .then((wines) => {
@@ -14,7 +13,6 @@ module.exports = {
 
     const { wine, vintage, gws, ci, nbj, country_id, entry_status_id } =
       req.body;
-    console.log("REQ.BODY:", req.body);
     return dbInstance
       .create_wine_entry({
         wine,
@@ -79,7 +77,6 @@ module.exports = {
     return dbInstance
       .get_all_wines()
       .then((wines) => {
-          console.log("RANDOM WINES:", wines);
         for (let i = 0; i < 5; i++) {
           const RandomIndex = Math.floor(Math.random() * 10);
           const Randomwine = wines[RandomIndex];
@@ -90,6 +87,38 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  filterWines: (req, res) => {
+    const dbInstance = req.app.get("db");
+    const { propertyToFilter, filterData } = req.body;
+    console.log("FILTER HIT!")
+    console.log("request.body:", req.body);
+    console.log("propertyTOFilter:", propertyToFilter);
+    return dbInstance
+      .get_all_wines()
+      .then((wines) => {
+        //Case sensitive filter.
+        const filteredWines = wines.filter(wine => `${wine[propertyToFilter]}`.includes(filterData));
+        return res.status(200).json({ filteredWines });
+      })
+      .catch((err) => console.log(err));
+  },
+  getLkCountries: (req, res) => {
+    const dbInstance = req.app.get('db');
+    return dbInstance.get_lk_countries()
+      .then(lkCountries => {
+        return res.status(200).json({ lkCountries });
+      })
+      .catch(error => {
+        return res.error(error);
+      })
+  },
+  createWine: (req, res) => {
+    const dbInstance = req.app.get('db');
+    const { wine, vintage, gws, ci, nbj, country } = req.body;
+    return dbInstance.create_wine({ wine, vintage, gws, ci, nbj, country })
+      .then(_ => res.json({ success: true }))
+      .catch(err => res.error(err));
+  }
 };
 
 // in the for loop create a random index from 1 to ten implententing math.floor and math.random, assign that result to a variable called random index have it camelcase
