@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal as BootstrapModal, ModalBody } from "react-bootstrap";
 import WineApi from "../../api/wineapi";
+import Favorite from "../Form/favorite";
 
 // const countries = {
 //     id:
@@ -13,7 +14,8 @@ function CreateWineModal({ openModal, setOpenModal }) {
     gws: "",
     ci: "",
     nbj: "",
-    country: "",
+    country: "1",
+    isfavoritewine: false,
   });
   const [selectCountries, setSelectCountries] = React.useState([]);
 
@@ -48,6 +50,7 @@ function CreateWineModal({ openModal, setOpenModal }) {
         ci: "",
         nbj: "",
         country: "",
+        isfavoritewine: false,
       });
       onCancel();
     }
@@ -114,6 +117,12 @@ function CreateWineModal({ openModal, setOpenModal }) {
                 </option>
               ))}
           </select>
+          <div id="check2" class="checkbox-container">
+          <label>
+          is my Favorite Wine?
+          <input type="checkbox" id="checkboxid2"  checked = {createWineForm.isfavoritewine} name="isfavoritewine" onChange={handleChange} />
+          </label>
+             </div>
         </BootstrapModal.Body>
         <BootstrapModal.Footer>
           <button

@@ -71,4 +71,6 @@ app.get("/api/get_lk_countries", wine_controller.getLkCountries );
 
 app.post("/api/create_wine", wine_controller.createWine );
 
+app.get("/api/favorite_wines", wine_controller.getfavoriteWines );
+   
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

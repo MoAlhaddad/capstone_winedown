@@ -109,17 +109,31 @@ module.exports = {
         return res.status(200).json({ lkCountries });
       })
       .catch(error => {
-        return res.error(error);
+        return console.log(error);
       })
   },
-  createWine: (req, res) => {
+    
+   createWine: (req, res) => {
     const dbInstance = req.app.get('db');
-    const { wine, vintage, gws, ci, nbj, country } = req.body;
-    return dbInstance.create_wine({ wine, vintage, gws, ci, nbj, country })
+    const { wine, vintage, gws, ci, nbj, country, isfavoritewine } = req.body;
+    console.log(req.body);
+    return dbInstance.create_wine( { wine, vintage, gws, ci, nbj, country, is_favorite_wine: isfavoritewine })
       .then(_ => res.json({ success: true }))
-      .catch(err => res.error(err));
-  }
-};
+      .catch(err => console.log(err));
+  },
+   
+    getfavoriteWines: (req, res) => {
+       const dbInstance = req.app.get('db');  
+       return dbInstance.get_favorite_wines()
+        .then((wines) => {
+        res.status(200).json({ wines: wines });
+      })
+      .catch((err) => console.log(err));
+    }
+  
+ }
+
+  
 
 // in the for loop create a random index from 1 to ten implententing math.floor and math.random, assign that result to a variable called random index have it camelcase
 //Using the random index get the specific wines from the wines retrieved using bracket notation [] to select a random wine

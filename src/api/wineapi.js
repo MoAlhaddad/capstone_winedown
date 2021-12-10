@@ -49,4 +49,10 @@ export default class WineApi {
             .catch(err => err);
     }
 
+    static getFavoriteWines() {
+        return ajaxCallCreators.get('/favorite_wines')
+            .then(result => result)
+            .catch(err => err);
+    }
+
 }

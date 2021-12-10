@@ -3,6 +3,7 @@ import Signup from './containers/Signup';
 import WineList from './containers/WineList';
 import RandomWineList from './containers/RandomWineList';
 import Survey from './components/Q/A/survey';
+import FavoriteWines from './containers/favoriteWines';
 
 
 export default (
@@ -11,5 +12,6 @@ export default (
         <Route path="/signup" component={Signup} />
         <Route path="/random-wines" component={RandomWineList} />
         <Route exact path="/survey" component={Survey} />
+        <Route exact path="/favorite-wines" component={FavoriteWines} />
     </Switch>
 );

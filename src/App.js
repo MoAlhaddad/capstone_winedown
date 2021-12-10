@@ -47,6 +47,9 @@ function App() {
               <Nav.Link href="#" onClick={() => history.push("/random-wines")}>
                   Random Wines
               </Nav.Link>
+              <Nav.Link href="#" onClick={() => history.push("/favorite-wines")}>
+                 Favorite Wines
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

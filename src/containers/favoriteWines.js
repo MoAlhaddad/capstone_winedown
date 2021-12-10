@@ -5,18 +5,18 @@ import SearchFilter from '../components/SearchFilter'
 import Paginate from '../components/Paginate';
 import Favorite from "../components/Form/favorite";
 
-export default function WineList() {
+export default function FavoriteWines() {
   //Set wines
   const [wines, setWines] = useState([]);
   React.useEffect(
     () => {
-      async function getWines() {
-        const wineResponse = await WineApi.getWines();
+      async function getFavoriteWines() {
+        const wineResponse = await WineApi.getFavoriteWines();
         setWines(wineResponse.wines);
        
       }
 
-      getWines();
+      getFavoriteWines();
     },
     []
   );
@@ -25,12 +25,8 @@ export default function WineList() {
 
   return (
     <div>
-      <h2> Winedown List </h2>
-      <Favorite />
-      <SearchFilter
-       wineList = {wines}  
-       setWinelist = {setWines} 
-      />
+      <h2> Favorite WineList  </h2>
+      
       <Paginate
         wineList={wines}
       />
