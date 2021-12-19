@@ -50,6 +50,14 @@ function Paginate(props) {
     },
 
     {
+      title: "FAVORITE",
+      dataIndex: "favorite",
+      render: (_, row) => (row.is_favorite_wine ? "Yes" : "No"),
+      sorter: (a, b) => a.favorite > b.favorite,
+      sortDirections: ["descend"],
+    },
+
+    {
       title: "DATE CREATED",
       dataIndex: "date_created",
       key: "date_created",

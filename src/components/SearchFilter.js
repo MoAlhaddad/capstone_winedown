@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WineApi from "../api/wineapi"
+import WineApi from "../api/wineapi";
 
 const filterItems = [
   { key: 1, label: "vintage" },
@@ -31,21 +31,21 @@ export default function SearchFilter({ wineList, setWinelist }) {
     setFilterForm(copyOfFilter);
   };
 
-  const handleSelectChange = evt => {
+  const handleSelectChange = (evt) => {
     const target = evt.target;
     const value = target.value;
     const copyOfFilter = Object.assign({}, filter);
     copyOfFilter.propertyToFilter = value;
     setFilterForm(copyOfFilter);
-  }
+  };
 
-  const onFilter = async evt => {
+  const onFilter = async (evt) => {
     evt.preventDefault();
     const wineResponse = await WineApi.filterWines(filter);
     setWinelist(wineResponse.filteredWines);
-  }
+  };
 
-  const resetToOriginalWineList = async evt => {
+  const resetToOriginalWineList = async (evt) => {
     evt.preventDefault();
     const wineResponse = await WineApi.getWines();
     setFilterForm({
@@ -53,7 +53,7 @@ export default function SearchFilter({ wineList, setWinelist }) {
       filterData: "",
     });
     setWinelist(wineResponse.wines);
-  }
+  };
 
   return (
     <form style={{ display: "flex" }} onSubmit={onFilter}>
@@ -82,8 +82,21 @@ export default function SearchFilter({ wineList, setWinelist }) {
           })}
         </select>
       </div>
-      <button type="submit" className="btn btn-primary" style={{width: '120px'}}>Filter</button>
-      <button type="button" className="btn btn-secondary" style={{width: '120px'}} onClick={resetToOriginalWineList}>Reset</button>
+      <button
+        type="submit"
+        className="btn btn-primary"
+        style={{ width: "120px" }}
+      >
+        Filter
+      </button>
+      <button
+        type="button"
+        className="btn btn-secondary"
+        style={{ width: "120px" }}
+        onClick={resetToOriginalWineList}
+      >
+        Reset
+      </button>
     </form>
   );
 }
