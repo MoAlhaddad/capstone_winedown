@@ -90,50 +90,60 @@ module.exports = {
   filterWines: (req, res) => {
     const dbInstance = req.app.get("db");
     const { propertyToFilter, filterData } = req.body;
-    console.log("FILTER HIT!")
+    console.log("FILTER HIT!");
     console.log("request.body:", req.body);
     console.log("propertyTOFilter:", propertyToFilter);
     return dbInstance
       .get_all_wines()
       .then((wines) => {
         //Case sensitive filter.
-        const filteredWines = wines.filter(wine => `${wine[propertyToFilter]}`.includes(filterData));
+        const filteredWines = wines.filter((wine) =>
+          `${wine[propertyToFilter]}`.includes(filterData)
+        );
         return res.status(200).json({ filteredWines });
       })
       .catch((err) => console.log(err));
   },
   getLkCountries: (req, res) => {
-    const dbInstance = req.app.get('db');
-    return dbInstance.get_lk_countries()
-      .then(lkCountries => {
+    const dbInstance = req.app.get("db");
+    return dbInstance
+      .get_lk_countries()
+      .then((lkCountries) => {
         return res.status(200).json({ lkCountries });
       })
-      .catch(error => {
+      .catch((error) => {
         return console.log(error);
-      })
+      });
   },
-    
-   createWine: (req, res) => {
-    const dbInstance = req.app.get('db');
-    const { wine, vintage, gws, ci, nbj, country, isfavoritewine } = req.body;
+
+  createWine: (req, res) => {
+    const dbInstance = req.app.get("db");
+    const { wine, vintage, gws, ci, nbj, country, isFavoriteWine } = req.body;
     console.log(req.body);
-    return dbInstance.create_wine( { wine, vintage, gws, ci, nbj, country, is_favorite_wine: isfavoritewine })
-      .then(_ => res.json({ success: true }))
-      .catch(err => console.log(err));
+    return dbInstance
+      .create_wine({
+        wine,
+        vintage,
+        gws,
+        ci,
+        nbj,
+        country,
+        isFavoriteWine: isFavoriteWine,
+      })
+      .then((_) => res.json({ success: true }))
+      .catch((err) => console.log(err));
   },
-   
-    getfavoriteWines: (req, res) => {
-       const dbInstance = req.app.get('db');  
-       return dbInstance.get_favorite_wines()
-        .then((wines) => {
+
+  getfavoriteWines: (req, res) => {
+    const dbInstance = req.app.get("db");
+    return dbInstance
+      .get_favorite_wines()
+      .then((wines) => {
         res.status(200).json({ wines: wines });
       })
       .catch((err) => console.log(err));
-    }
-  
- }
-
-  
+  },
+};
 
 // in the for loop create a random index from 1 to ten implententing math.floor and math.random, assign that result to a variable called random index have it camelcase
 //Using the random index get the specific wines from the wines retrieved using bracket notation [] to select a random wine

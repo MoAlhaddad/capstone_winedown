@@ -1,51 +1,51 @@
 import React, { useEffect, useState } from "react";
-import Pagination from "react-bootstrap/Pagination"
+import Pagination from "react-bootstrap/Pagination";
 
-const PaginationComponent = ({ total=0,
-     itemPerPage=10,
-      currentPage=1, 
-      onPageChange
-    }) => {
+const PaginationComponent = ({
+  total = 0,
+  itemPerPage = 10,
+  currentPage = 1,
+  onPageChange,
+}) => {
+  const [totalPages, setTotalPages] = useState(0);
 
-    const [totalPages, setTotalPages] = useState(0)
+  useEffect(() => {
+    if (total > 0 && itemsPerPage > 0)
+      setTotalPages(Math.ceil(total / itemsPerPage));
+  }, [total, itemPerPage]);
 
-    useEffect( () => {
-        if( total > 0 && itemsPerPage > 0)
-           setTotalPages( Math.cell( total / itemsPerPage))
-    }, [ total, itemPerPage]);
+  const paginationItems = useMemo(() => {
+    const pages = [];
 
-    const paginationItems = useMemo(() => {
-        const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <Pagination.Item
+          key={1}
+          active={i === currentPage}
+          onClick={() => onPageChange(i)}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+    return pages;
+  }, [totalPages, currentPage]);
 
-        for(let i=1; i <= totalPages; i++){
-            pages.push(
-            <Pagination.Item 
-              key={1} 
-              active={ i === currentPage} 
-              onClick={() => onPageChange(i)}
-            >
-                {i}
-            </Pagination.Item>
-            
-          );
-        }
-          return pages;
-    }, [ totalPages, currentPage])
+  if (totalPages === 0) return null;
 
-    if( totalPages === 0 ) return null;
-
-    return (
+  return (
     <Pagination>
-        <Pagination.Prev 
-         onClick={ () => onPageChange( currentPage - 1) }
-         disabled={currentPage === 1}/>
-         { paginationItems }
-        <Pagination.Next 
-        onClick={ () => onPageChange( currentPage + 1) }
-         disabled={currentPage === totalPages}/>
+      <Pagination.Prev
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      />
+      {paginationItems}
+      <Pagination.Next
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      />
     </Pagination>
-    );
+  );
 };
-
 
 export default PaginationComponent;

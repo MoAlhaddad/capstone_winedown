@@ -11,4 +11,4 @@ insert into wine_scores
 )
 
  values
-( ${wine}, ${vintage}, ${gws}, ${ci}, ${nbj}, ${country},${is_favorite_wine}, current_timestamp);
+( ${wine}, ${vintage}, ${gws}, ${ci}, ${nbj}, ${country},${isFavoriteWine}, current_timestamp);

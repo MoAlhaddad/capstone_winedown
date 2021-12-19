@@ -2,6 +2,7 @@ import React from "react";
 import { Modal as BootstrapModal, ModalBody } from "react-bootstrap";
 import WineApi from "../../api/wineapi";
 import Favorite from "../Form/favorite";
+import "./styles.scss";
 
 // const countries = {
 //     id:
@@ -15,7 +16,7 @@ function CreateWineModal({ openModal, setOpenModal }) {
     ci: "",
     nbj: "",
     country: "1",
-    isfavoritewine: false,
+    isFavoriteWine: false,
   });
   const [selectCountries, setSelectCountries] = React.useState([]);
 
@@ -50,7 +51,7 @@ function CreateWineModal({ openModal, setOpenModal }) {
         ci: "",
         nbj: "",
         country: "",
-        isfavoritewine: false,
+        isFavoriteWine: false,
       });
       onCancel();
     }
@@ -63,7 +64,7 @@ function CreateWineModal({ openModal, setOpenModal }) {
       toggle={() => setOpenModal(!openModal)}
       size="lg"
     >
-      <form onSubmit={createWine}>
+      <form onSubmit={createWine} id="createWineForm">
         <BootstrapModal.Header>
           <h2>Create Wine</h2>
         </BootstrapModal.Header>
@@ -71,45 +72,36 @@ function CreateWineModal({ openModal, setOpenModal }) {
           style={{ display: "flex", flexDirection: "column", padding: "10px" }}
         >
           <input
-            style={{ margin: "10px" }}
             name="wine"
-            placeholder="Put your wine here"
+            placeholder="insert your wine here"
             value={createWineForm.wine}
             onChange={handleChange}
           />
           <input
-            style={{ margin: "10px" }}
             name="vintage"
-            placeholder="Put your vintage here"
+            placeholder="insert your vintage here"
             value={createWineForm.vintage}
             onChange={handleChange}
           />
           <input
-            style={{ margin: "10px" }}
             name="gws"
-            placeholder="Put your gws here"
+            placeholder="insert your gws here"
             value={createWineForm.gws}
             onChange={handleChange}
           />
           <input
-            style={{ margin: "10px" }}
             name="ci"
-            placeholder="Put your ci here"
+            placeholder="insert your ci here"
             value={createWineForm.ci}
             onChange={handleChange}
           />
           <input
-            style={{ margin: "10px" }}
             name="nbj"
-            placeholder="Put your nbj here"
+            placeholder="insert your nbj here"
             value={createWineForm.nbj}
             onChange={handleChange}
           />
-          <select
-            name="country"
-            onChange={handleChange}
-            style={{ margin: "10px", padding: "10px" }}
-          >
+          <select name="country" onChange={handleChange}>
             {selectCountries.length &&
               selectCountries.map((selectCountry, idx) => (
                 <option key={idx} value={selectCountry.value}>
@@ -118,11 +110,17 @@ function CreateWineModal({ openModal, setOpenModal }) {
               ))}
           </select>
           <div id="check2" class="checkbox-container">
-          <label>
-          is my Favorite Wine?
-          <input type="checkbox" id="checkboxid2"  checked = {createWineForm.isfavoritewine} name="isfavoritewine" onChange={handleChange} />
-          </label>
-             </div>
+            <label>
+              is my Favorite Wine?
+              <input
+                type="checkbox"
+                id="checkboxid2"
+                checked={createWineForm.isFavoriteWine}
+                name="isFavoriteWine"
+                onChange={handleChange}
+              />
+            </label>
+          </div>
         </BootstrapModal.Body>
         <BootstrapModal.Footer>
           <button
