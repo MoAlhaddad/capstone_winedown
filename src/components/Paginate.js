@@ -1,8 +1,9 @@
 import React from "react";
 import { Table } from "antd";
+import { format } from "date-fns";
 
 function Paginate(props) {
-  const { wineList } = props;
+  const { wineList, displayFavoriteWineColumn } = props;
   const columns = [
     {
       title: "WINE",
@@ -48,23 +49,28 @@ function Paginate(props) {
       sorter: (a, b) => a.country > b.country,
       sortDirections: ["descend"],
     },
+  ];
+  const dateCreatedColumn = {
+    title: "DATE CREATED",
+    dataIndex: "date_created",
+    key: "date_created",
+    render: (_, row) =>
+      format(new Date(row.date_created), "yyyy/MM/dd hh:mm aaaa"),
+    sorter: (a, b) => new Date(a.date_created) > new Date(b.date_created),
+    sortDirections: ["descend"],
+  };
 
-    {
+  if (displayFavoriteWineColumn) {
+    columns.push({
       title: "FAVORITE",
       dataIndex: "favorite",
       render: (_, row) => (row.is_favorite_wine ? "Yes" : "No"),
       sorter: (a, b) => a.favorite > b.favorite,
       sortDirections: ["descend"],
-    },
+    });
+  }
 
-    {
-      title: "DATE CREATED",
-      dataIndex: "date_created",
-      key: "date_created",
-      sorter: (a, b) => new Date(a.date_created) > new Date(b.date_created),
-      sortDirections: ["descend"],
-    },
-  ];
+  columns.push(dateCreatedColumn);
 
   return <Table size="large" columns={columns} dataSource={wineList} />;
 }

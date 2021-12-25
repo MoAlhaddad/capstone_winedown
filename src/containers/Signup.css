@@ -28,10 +28,10 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+  background: -webkit-linear-gradient(left, #45b2728e, #42fad257);
 }
 ::selection{
-  background: #fa4299;
+  background: #42faa460;
   color: #fff;
 }
 .wrapper{
@@ -83,7 +83,7 @@ html,body{
 }
 #signup-form-container > .nav-tabs > .nav-item {
   color: #b3b3b3;
-  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+  background: -webkit-linear-gradient(left, #45b2728e, #42fad257);
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 

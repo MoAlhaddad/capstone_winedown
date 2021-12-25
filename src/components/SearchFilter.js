@@ -23,6 +23,10 @@ export default function SearchFilter({ wineList, setWinelist }) {
     propertyToFilter: filterItems[0].label,
     filterData: "",
   });
+
+  const [selectedFilters, setSelectedFilters] = useState(new Set());
+  const [currentFilter, setCurrentFilter] = useState("");
+
   const handleChange = (evt) => {
     const target = evt.target;
     const value = target.type == "checkbox" ? target.checked : target.value;
@@ -56,7 +60,10 @@ export default function SearchFilter({ wineList, setWinelist }) {
   };
 
   return (
-    <form style={{ display: "flex" }} onSubmit={onFilter}>
+    <form
+      style={{ display: "flex", justifyContent: "space-between" }}
+      onSubmit={onFilter}
+    >
       <div id={"search-filter"} style={{ display: "flex" }}>
         <input
           id="searchValue"
@@ -64,39 +71,60 @@ export default function SearchFilter({ wineList, setWinelist }) {
           onChange={handleChange}
           placeholder="Filter winedown list"
           value={filter.filterData}
-          style={{ width: "70%" }}
+          style={{ width: "70%", padding: "10px" }}
         />
-        <select
-          id={"propertyToSearchFor"}
-          style={{ width: "30%" }}
-          onChange={handleSelectChange}
-          defaultValue={filter.propertyToFilter}
-          value={filter.propertyToFilter}
-        >
-          {filterItems.map((filterItem) => {
-            return (
-              <option key={filterItem.key} value={filterItem.label}>
-                {filterItem.label}
-              </option>
-            );
-          })}
-        </select>
+        {/* {filterItems.map((filterItem) => (
+          <button
+            type="button"
+            onClick={() => {
+              {
+                let copyOfSelectedFilters = Array.from(
+                  selectedFilters.values
+                ).slice();
+                const hasSelectedFilter = copyOfSelectedFilters.some(
+                  (sf) => sf === filterItem.key
+                );
+                const isCurrentFilter = currentFilter === filterItem.key;
+                if (hasSelectedFilter && currentFilter) {
+                  copyOfSelectedFilters = copyOfSelectedFilters.filter(
+                    (sf) => sf !== filterItem.key
+                  );
+                } else {
+                  copyOfSelectedFilters.push(filterItem.key);
+                }
+                setSelectedFilters(new Set(copyOfSelectedFilters));
+                setCurrentFilter(filterItem.key);
+              }
+            }}
+            style={{
+              backgroundColor: selectedFilters.has(filterItem.key)
+                ? "green"
+                : "initial",
+            }}
+            className="btn btn-secondary"
+          >
+            {filterItem.label}
+          </button>
+        ))} */}
       </div>
-      <button
-        type="submit"
-        className="btn btn-primary"
-        style={{ width: "120px" }}
-      >
-        Filter
-      </button>
-      <button
-        type="button"
-        className="btn btn-secondary"
-        style={{ width: "120px" }}
-        onClick={resetToOriginalWineList}
-      >
-        Reset
-      </button>
+
+      <div>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          style={{ width: "120px" }}
+        >
+          Filter
+        </button>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          style={{ width: "120px" }}
+          onClick={resetToOriginalWineList}
+        >
+          Reset
+        </button>
+      </div>
     </form>
   );
 }

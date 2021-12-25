@@ -20,7 +20,7 @@ export default function FavoriteWines() {
     <div>
       <h2> Favorite WineList </h2>
 
-      <Paginate wineList={wines} />
+      <Paginate wineList={wines} displayFavoriteWineColumn={false} />
 
       {/* <div style={{ display: "flex", flexWrap: "wrap" }}>
         {wines && wines.map((wine) => <Card key={wine.id} {...wine} />)}

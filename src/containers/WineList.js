@@ -21,7 +21,7 @@ export default function WineList() {
       <h2> Winedown List </h2>
 
       <SearchFilter wineList={wines} setWinelist={setWines} />
-      <Paginate wineList={wines} />
+      <Paginate wineList={wines} displayFavoriteWineColumn={true} />
 
       {/* <div style={{ display: "flex", flexWrap: "wrap" }}>
         {wines && wines.map((wine) => <Card key={wine.id} {...wine} />)}

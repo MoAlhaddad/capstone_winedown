@@ -25,30 +25,38 @@ function App() {
     }
   }, []);
 
-  const openCreateWineModal = evt => {
+  const openCreateWineModal = (evt) => {
     evt.preventDefault();
     setShowCreateWineModal(true);
-  }
+  };
 
   return (
-    <Container className="App" style={{minWidth: '100vw', maxWidth: '100vw'}}>
-      <Navbar id="winedown-navbar" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Container className="App" style={{ minWidth: "100vw", maxWidth: "100vw" }}>
+      <Navbar
+        id="winedown-navbar"
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+      >
         <Container>
           <Navbar.Brand href="#" onClick={() => history.push("/")}>
-              Wine Down
-            
+            Wine Down
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#" onClick={() => history.push("/random-wines")}>
-                  Q and A
+                Q and A
               </Nav.Link>
               <Nav.Link href="#" onClick={() => history.push("/random-wines")}>
-                  Random Wines
+                Random Wines
               </Nav.Link>
-              <Nav.Link href="#" onClick={() => history.push("/favorite-wines")}>
-                 Favorite Wines
+              <Nav.Link
+                href="#"
+                onClick={() => history.push("/favorite-wines")}
+              >
+                Favorite Wines
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -96,7 +104,10 @@ function App() {
         </Button>
       </div>
       <div>{Routes}</div>
-      <CreateWineModal openModal={showCreateWineModal} setOpenModal={setShowCreateWineModal} />
+      <CreateWineModal
+        openModal={showCreateWineModal}
+        setOpenModal={setShowCreateWineModal}
+      />
     </Container>
   );
 }
