@@ -24,8 +24,9 @@ export default function SearchFilter({ wineList, setWinelist }) {
     filterData: "",
   });
 
-  const [selectedFilters, setSelectedFilters] = useState(new Set());
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("");
+  const selectedFiltersSet = React.useRef(new Set());
 
   const handleChange = (evt) => {
     const target = evt.target;
@@ -73,31 +74,29 @@ export default function SearchFilter({ wineList, setWinelist }) {
           value={filter.filterData}
           style={{ width: "70%", padding: "10px" }}
         />
-        {/* {filterItems.map((filterItem) => (
+        {filterItems.map((filterItem) => (
           <button
             type="button"
-            onClick={() => {
-              {
-                let copyOfSelectedFilters = Array.from(
-                  selectedFilters.values
-                ).slice();
-                const hasSelectedFilter = copyOfSelectedFilters.some(
-                  (sf) => sf === filterItem.key
-                );
-                const isCurrentFilter = currentFilter === filterItem.key;
-                if (hasSelectedFilter && currentFilter) {
-                  copyOfSelectedFilters = copyOfSelectedFilters.filter(
-                    (sf) => sf !== filterItem.key
-                  );
-                } else {
-                  copyOfSelectedFilters.push(filterItem.key);
-                }
-                setSelectedFilters(new Set(copyOfSelectedFilters));
-                setCurrentFilter(filterItem.key);
+            id={filterItem.key}
+            key={filterItem.key}
+            onClick={(event) => {
+              const hasSelectedFilter = selectedFiltersSet.current.has(
+                event.target.id
+              );
+              const isCurrentFilter = currentFilter === filterItem.key;
+              if (hasSelectedFilter && currentFilter) {
+                selectedFiltersSet.current.delete(event.target.id);
+              } else {
+                selectedFiltersSet.current.add(event.target.id);
               }
+
+              setSelectedFilters(Array.from(selectedFiltersSet.current));
+              setCurrentFilter(filterItem.key);
             }}
             style={{
-              backgroundColor: selectedFilters.has(filterItem.key)
+              backgroundColor: selectedFilters.some(
+                (sf) => sf === filterItem.key
+              )
                 ? "green"
                 : "initial",
             }}
@@ -105,7 +104,7 @@ export default function SearchFilter({ wineList, setWinelist }) {
           >
             {filterItem.label}
           </button>
-        ))} */}
+        ))}
       </div>
 
       <div>

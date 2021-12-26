@@ -11,6 +11,7 @@ import Routes from "./Routes";
 import "./App.css";
 import { useHistory } from "react-router";
 import Wines from "./components/Wines";
+
 // import Paginate from "./components/Paginate";
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
           variant="outline-primary"
           onClick={openCreateWineModal}
         >
-          Create Wine
+          Add Wine
         </Button>
         <Button
           variant="outline-primary"

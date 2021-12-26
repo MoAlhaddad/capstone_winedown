@@ -65,7 +65,7 @@ function CreateWineModal({ openModal, setOpenModal }) {
     >
       <form onSubmit={createWine} id="createWineForm">
         <BootstrapModal.Header>
-          <h2>Create Wine</h2>
+          <h2>Add Wine</h2>
         </BootstrapModal.Header>
         <BootstrapModal.Body
           style={{ display: "flex", flexDirection: "column", padding: "10px" }}
@@ -127,7 +127,7 @@ function CreateWineModal({ openModal, setOpenModal }) {
             className="btn btn-primary"
             style={{ maxWidth: "170px" }}
           >
-            Create Wine
+            Add Wine
           </button>
           <button
             type="button"
