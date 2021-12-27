@@ -89,17 +89,27 @@ module.exports = {
   },
   filterWines: (req, res) => {
     const dbInstance = req.app.get("db");
-    const { propertyToFilter, filterData } = req.body;
-    console.log("FILTER HIT!");
-    console.log("request.body:", req.body);
-    console.log("propertyTOFilter:", propertyToFilter);
+    const { filters, typeOfComparison } = req.body;
+    console.log("FILTERS:", filters);
+    const filtersToUse = Object.keys(filters).filter(
+      (filtKey) => filters[filtKey].active === true
+    );
+    console.log("FUCK MY BROTHER:", filtersToUse);
     return dbInstance
       .get_all_wines()
       .then((wines) => {
         //Case sensitive filter.
-        const filteredWines = wines.filter((wine) =>
-          `${wine[propertyToFilter]}`.includes(filterData)
-        );
+        const filteredWines = wines.filter((wine) => {
+          if (typeOfComparison === "and") {
+            return filtersToUse.every((filtKey) =>
+              `${wine[filtKey]}`.includes(filters[filtKey].value)
+            );
+          }
+          console.log("hit some filter");
+          return filtersToUse.some((filtKey) =>
+            `${wine[filtKey]}`.includes(filters[filtKey].value)
+          );
+        });
         return res.status(200).json({ filteredWines });
       })
       .catch((err) => console.log(err));

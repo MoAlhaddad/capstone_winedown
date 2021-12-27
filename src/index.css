@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+button.active {
+  background-color: green;
+}
+
+button.not-active {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
 @media(min-width: 356px) {
   #winedown-navbar {
     width: 100vw !important;

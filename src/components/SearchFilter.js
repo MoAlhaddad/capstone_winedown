@@ -20,33 +20,57 @@ const filterItems = [
 
 export default function SearchFilter({ wineList, setWinelist }) {
   const [filter, setFilterForm] = useState({
-    propertyToFilter: filterItems[0].label,
-    filterData: "",
+    propertiesToFilter: {
+      vintage: {
+        value: "",
+        active: false,
+      },
+      gws: {
+        value: "",
+        active: false,
+      },
+      ci: {
+        value: "",
+        active: false,
+      },
+      nbj: {
+        value: "",
+        active: false,
+      },
+      country: {
+        value: "",
+        active: false,
+      },
+    },
+    typeOfComparison: "or",
   });
 
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState("");
   const selectedFiltersSet = React.useRef(new Set());
 
   const handleChange = (evt) => {
     const target = evt.target;
-    const value = target.type == "checkbox" ? target.checked : target.value;
-    const copyOfFilter = Object.assign({}, filter);
-    copyOfFilter.filterData = value;
-    setFilterForm(copyOfFilter);
+    const targetId = target.id;
+    const value = target.value;
+    const copyOfFilters = Object.assign({}, filter);
+    copyOfFilters.propertiesToFilter[targetId].value = value;
+    setFilterForm(copyOfFilters);
   };
 
-  const handleSelectChange = (evt) => {
+  const handleCheckboxChange = (evt) => {
     const target = evt.target;
-    const value = target.value;
-    const copyOfFilter = Object.assign({}, filter);
-    copyOfFilter.propertyToFilter = value;
-    setFilterForm(copyOfFilter);
+    const value = target.checked;
+    const copyOfFilters = Object.assign({}, filter);
+    copyOfFilters.typeOfComparison = value ? "and" : "or";
+    setFilterForm(copyOfFilters);
   };
 
   const onFilter = async (evt) => {
     evt.preventDefault();
-    const wineResponse = await WineApi.filterWines(filter);
+    const wineResponse = await WineApi.filterWines({
+      filters: filter.propertiesToFilter,
+      typeOfComparison: filter.typeOfComparison,
+    });
     setWinelist(wineResponse.filteredWines);
   };
 
@@ -66,47 +90,62 @@ export default function SearchFilter({ wineList, setWinelist }) {
       onSubmit={onFilter}
     >
       <div id={"search-filter"} style={{ display: "flex" }}>
-        <input
-          id="searchValue"
-          name="searchValue"
-          onChange={handleChange}
-          placeholder="Filter winedown list"
-          value={filter.filterData}
-          style={{ width: "70%", padding: "10px" }}
-        />
         {filterItems.map((filterItem) => (
-          <button
-            type="button"
-            id={filterItem.key}
+          <div
             key={filterItem.key}
-            onClick={(event) => {
-              const hasSelectedFilter = selectedFiltersSet.current.has(
-                event.target.id
-              );
-              const isCurrentFilter = currentFilter === filterItem.key;
-              if (hasSelectedFilter && currentFilter) {
-                selectedFiltersSet.current.delete(event.target.id);
-              } else {
-                selectedFiltersSet.current.add(event.target.id);
-              }
-
-              setSelectedFilters(Array.from(selectedFiltersSet.current));
-              setCurrentFilter(filterItem.key);
-            }}
-            style={{
-              backgroundColor: selectedFilters.some(
-                (sf) => sf === filterItem.key
-              )
-                ? "green"
-                : "initial",
-            }}
-            className="btn btn-secondary"
+            style={{ marginRight: "10px", display: "flex" }}
           >
-            {filterItem.label}
-          </button>
+            {selectedFilters.some((sf) => parseInt(sf) === filterItem.key) ? (
+              <input
+                id={filterItem.label}
+                onChange={handleChange}
+                placeholder={`By ${filterItem.label}`}
+                value={filter.propertiesToFilter[filterItem.key]}
+                style={{ padding: "5px", width: "100px" }}
+              />
+            ) : null}
+            <button
+              type="button"
+              id={filterItem.key}
+              onClick={(event) => {
+                const copyOfFilters = Object.assign({}, filter);
+                const hasSelectedFilter = selectedFiltersSet.current.has(
+                  event.target.id
+                );
+                if (hasSelectedFilter) {
+                  selectedFiltersSet.current.delete(event.target.id);
+                  copyOfFilters.propertiesToFilter[
+                    filterItem.label
+                  ].active = false;
+                } else {
+                  selectedFiltersSet.current.add(event.target.id);
+                  copyOfFilters.propertiesToFilter[
+                    filterItem.label
+                  ].active = true;
+                }
+                setSelectedFilters(Array.from(selectedFiltersSet.current));
+                setFilterForm(copyOfFilters);
+              }}
+              className={`btn ${
+                selectedFilters.some((sf) => parseInt(sf) === filterItem.key)
+                  ? "active"
+                  : "not-active"
+              }`}
+            >
+              {filterItem.label}
+            </button>
+          </div>
         ))}
+        <div>
+          And
+          <br /> Comparison
+          <input
+            type="Checkbox"
+            checked={filter.typeOfComparison === "and"}
+            onChange={handleCheckboxChange}
+          />
+        </div>
       </div>
-
       <div>
         <button
           type="submit"
