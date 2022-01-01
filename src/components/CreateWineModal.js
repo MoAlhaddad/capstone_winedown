@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal as BootstrapModal, ModalBody } from "react-bootstrap";
-import WineApi from "../../api/wineapi";
-import "./styles.scss";
+import WineApi from "../api/wineapi";
+import "./CreateWineModalStyles.scss";
 
 // const countries = {
 //     id:

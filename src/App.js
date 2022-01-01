@@ -1,18 +1,12 @@
-import React, { Component } from "react";
-import { Button, Container, Image, Navbar, Nav } from "react-bootstrap";
+import React from "react";
+import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import WineApi from "./api/wineapi";
-import InputApi from "./api/inputapi";
-import Card from "./components/Card";
-import Form from "./components/Form";
 import CreateWineModal from "./components/CreateWineModal";
-import Signup from "./containers/Signup";
-import logo from "./logo.svg";
+// import Signup from "./containers/Signup";
 import Routes from "./Routes";
-import "./App.css";
+import "./App.scss";
 import { useHistory } from "react-router";
-import Wines from "./components/Wines";
-
-// import Paginate from "./components/Paginate";
+import { v4 as uuidV4 } from "uuid";
 
 function App() {
   const history = useHistory();
@@ -47,13 +41,22 @@ function App() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#" onClick={() => history.push("/random-wines")}>
+              <Nav.Link
+                key={uuidV4()}
+                href="#"
+                onClick={() => history.push("/survey")}
+              >
                 Q and A
               </Nav.Link>
-              <Nav.Link href="#" onClick={() => history.push("/random-wines")}>
+              <Nav.Link
+                key={uuidV4()}
+                href="#"
+                onClick={() => history.push("/random-wines")}
+              >
                 Random Wines
               </Nav.Link>
               <Nav.Link
+                key={uuidV4()}
                 href="#"
                 onClick={() => history.push("/favorite-wines")}
               >

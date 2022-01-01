@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
 
-import "./Signup.css";
+import "./Signup.scss";
 
 const defaultRegistrationFields = {
   email: "",
@@ -19,20 +18,21 @@ const defaultLoginFields = {
 
 export default function Signup() {
   //Set registration fields
-  const [registrationEmail, setRegisterationEmail] = useState('');
-  const [registrationPassword, setRegisterationPassword] = useState('');
-  const [registrationConfirmPassword, setRegistrationConfirmPassword] = useState('');
+  const [registrationEmail, setRegisterationEmail] = useState("");
+  const [registrationPassword, setRegisterationPassword] = useState("");
+  const [registrationConfirmPassword, setRegistrationConfirmPassword] =
+    useState("");
 
   //Set login fields
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const [selectedTab, setSelectedTab] = useState("login");
   const history = useHistory();
   const [newUser, setNewUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-    /* Handle registration input changes */
+  /* Handle registration input changes */
   function handleRegistrationEmailChange(evt) {
     setRegisterationEmail(evt.target.value);
   }
@@ -58,25 +58,25 @@ export default function Signup() {
 
     setIsLoading(true);
 
-    let userToSetInLocalStorage = { email: '', password: '' };
+    let userToSetInLocalStorage = { email: "", password: "" };
     //When the user register or login's. Reset it's corresponding inputs.
-    if(selectedTab === 'signup') {
-      setRegisterationEmail('');
-      setRegisterationPassword('');
-      setRegistrationConfirmPassword('');
+    if (selectedTab === "signup") {
+      setRegisterationEmail("");
+      setRegisterationPassword("");
+      setRegistrationConfirmPassword("");
       userToSetInLocalStorage.email = registrationEmail;
       userToSetInLocalStorage.password = registrationPassword;
     } else {
-      setLoginEmail('');
-      setLoginPassword('');
+      setLoginEmail("");
+      setLoginPassword("");
       userToSetInLocalStorage.email = loginEmail;
       userToSetInLocalStorage.password = loginPassword;
     }
-    
+
     setIsLoading(false);
-    
+
     setNewUser(userToSetInLocalStorage); //Set the user to the registrationFields typed,
-    
+
     localStorage.setItem("user", JSON.stringify(userToSetInLocalStorage)); //Setting the local storage with the user object.
 
     history.push("/");
@@ -131,21 +131,38 @@ export default function Signup() {
                   onSubmit={handleSubmit}
                 >
                   <div className="field">
-                    <input type="text" placeholder="Email Address" value={loginEmail} onChange={handleLoginEmailChange} required />
+                    <input
+                      type="text"
+                      placeholder="Email Address"
+                      value={loginEmail}
+                      onChange={handleLoginEmailChange}
+                      required
+                    />
                   </div>
                   <div className="field">
-                    <input type="password" placeholder="Password" value={loginPassword} onChange={handleLoginPasswordChange} required />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={loginPassword}
+                      onChange={handleLoginPasswordChange}
+                      required
+                    />
                   </div>
                   <div className="pass-link">
                     <a href="#">Forgot password?</a>
                   </div>
                   <div className="field-btn">
                     <div className="btn-layer"></div>
-                    <Button type="submit" variant="success">Login</Button>
+                    <Button type="submit" variant="success">
+                      Login
+                    </Button>
                   </div>
                   <div className="signup-link">
                     Not a member?{" "}
-                    <button type="button" onClick={() => handleTabSelect('signup')}>
+                    <button
+                      type="button"
+                      onClick={() => handleTabSelect("signup")}
+                    >
                       Signup now
                     </button>
                   </div>
@@ -163,10 +180,22 @@ export default function Signup() {
                   onSubmit={handleSubmit}
                 >
                   <div className="field">
-                    <input type="text" placeholder="Email Address" value={registrationEmail} onChange={handleRegistrationEmailChange} required />
+                    <input
+                      type="text"
+                      placeholder="Email Address"
+                      value={registrationEmail}
+                      onChange={handleRegistrationEmailChange}
+                      required
+                    />
                   </div>
                   <div className="field">
-                    <input type="password" placeholder="Password" value={registrationPassword} onChange={handleRegistrationPasswordChange} required />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={registrationPassword}
+                      onChange={handleRegistrationPasswordChange}
+                      required
+                    />
                   </div>
                   <div className="field">
                     <input
@@ -177,9 +206,11 @@ export default function Signup() {
                       required
                     />
                   </div>
-                  <div className="field-btn" style={{marginTop: '10px'}}>
+                  <div className="field-btn" style={{ marginTop: "10px" }}>
                     <div className="btn-layer"></div>
-                    <Button type="submit" variant="success">Signup</Button>
+                    <Button type="submit" variant="success">
+                      Signup
+                    </Button>
                   </div>
                 </form>
               </div>

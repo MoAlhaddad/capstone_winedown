@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import WineApi from "../api/wineapi";
-import Card from "../components/Card";
-import SearchFilter from "../components/SearchFilter";
 import Paginate from "../components/Paginate";
 
 export default function FavoriteWines() {

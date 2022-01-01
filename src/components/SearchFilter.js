@@ -78,8 +78,29 @@ export default function SearchFilter({ wineList, setWinelist }) {
     evt.preventDefault();
     const wineResponse = await WineApi.getWines();
     setFilterForm({
-      propertyToFilter: filterItems[0].label,
-      filterData: "",
+      propertiesToFilter: {
+        vintage: {
+          value: "",
+          active: false,
+        },
+        gws: {
+          value: "",
+          active: false,
+        },
+        ci: {
+          value: "",
+          active: false,
+        },
+        nbj: {
+          value: "",
+          active: false,
+        },
+        country: {
+          value: "",
+          active: false,
+        },
+      },
+      typeOfComparison: "or",
     });
     setWinelist(wineResponse.wines);
   };
