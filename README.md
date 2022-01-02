@@ -5,7 +5,15 @@ To start the application you will
 -then you will cd into your Server
 -and run node index.js to run server
 
-
+Resources:
+https://react-table.tanstack.com/docs/api/useSortBy
+https://github.com/mui-org/material-ui
+https://github.com/tannerlinsley/react-table
+https://www.akashmittal.com/react-table-learn-filter-sort-pagination-in-10-minutes/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+https://thenounproject.com/search/?q=person
+https://www.programmableweb.com/news/8-top-wine-apis/brief/2020/04/12
+https://www.sqltabs.com/
 
 
 
