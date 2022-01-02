@@ -53,7 +53,7 @@ function App() {
                 href="#"
                 onClick={() => history.push("/random-wines")}
               >
-                Random Wines
+                Survey List
               </Nav.Link>
               <Nav.Link
                 key={uuidV4()}
