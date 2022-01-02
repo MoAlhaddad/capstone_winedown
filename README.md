@@ -1,3 +1,22 @@
+CAPSTONE
+To start the application you will 
+-first have to Npm I in your terminal to install the dependencies
+-Then do Npm start to run the front end
+-then you will cd into your Server
+-and run node index.js to run server
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
