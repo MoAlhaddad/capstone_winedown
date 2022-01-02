@@ -15,7 +15,7 @@ export default function RandomWineList() {
 
   return (
     <div>
-      <h1 id="title">Random Wines based on Wine Preferences</h1>
+      <h1 id="title">Recommendations</h1>
       <div style={{ display: "flex", flex: "0 20%" }}>
         {wines.length &&
           wines.map((wine) => <WineScoreCard key={wine.id} {...wine} />)}

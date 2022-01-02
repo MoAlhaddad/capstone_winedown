@@ -4,6 +4,7 @@ import { Card as BootstrapCard } from "react-bootstrap";
 import "./WineScoreCardStyles.scss";
 
 export default function Card({
+  key,
   wine,
   vintage,
   gws,
@@ -15,7 +16,7 @@ export default function Card({
   date_updated,
 }) {
   return (
-    <BootstrapCard className="winedown-card">
+    <BootstrapCard key={key} className="winedown-card">
       <BootstrapCard.Header>{wine}</BootstrapCard.Header>
       <BootstrapCard.Body>
         Vintage: {vintage}

@@ -13,6 +13,7 @@ module.exports = {
 
     const { wine, vintage, gws, ci, nbj, country_id, entry_status_id } =
       req.body;
+    console.log({ wine, vintage, gws, ci, nbj, country_id, entry_status_id });
     return dbInstance
       .create_wine_entry({
         wine,
@@ -94,7 +95,7 @@ module.exports = {
     const filtersToUse = Object.keys(filters).filter(
       (filtKey) => filters[filtKey].active === true
     );
-    console.log("FUCK MY BROTHER:", filtersToUse);
+    console.log("Filters to use:", filtersToUse);
     return dbInstance
       .get_all_wines()
       .then((wines) => {
