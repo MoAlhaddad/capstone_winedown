@@ -1,3 +1,30 @@
+CAPSTONE
+To start the application you will 
+-first have to Npm I in your terminal to install the dependencies
+-Then do Npm start to run the front end
+-then you will cd into your Server
+-and run node index.js to run server
+
+Resources:
+https://react-table.tanstack.com/docs/api/useSortBy
+https://github.com/mui-org/material-ui
+https://github.com/tannerlinsley/react-table
+https://www.akashmittal.com/react-table-learn-filter-sort-pagination-in-10-minutes/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+https://thenounproject.com/search/?q=person
+https://www.programmableweb.com/news/8-top-wine-apis/brief/2020/04/12
+https://www.sqltabs.com/
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
