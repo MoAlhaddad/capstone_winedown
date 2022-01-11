@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import WineApi from "../api/wineapi";
 
-import SearchFilter from "src\components\SearchFilter.js";
+import SearchFilter from "srccomponentsSearchFilter.js";
 import { render, fireEvent, queryByTitle } from "@testing-library/react";
-
 
 describe("Search Filter", () => {
   it("rendered search filter", () => {
