@@ -37,9 +37,9 @@ module.exports = {
 
     /*
      ** Success is not required, return a 204 status code indicating a record has been updated, therefore return no content.
-     ***** DELETE THIS COOMMENT *********
+     
      ** Instead refresh the screen with updated data.
-     ** In a professional situation you would refresh a grid, or refresh the modal with updated data.
+     ** In a professional situation i would refresh a grid, or refresh the modal with updated data.
      */
     return dbInstance
       .update_wine_entry({
