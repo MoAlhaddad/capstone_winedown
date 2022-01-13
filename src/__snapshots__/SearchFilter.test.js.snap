@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchFilter rendered SearchFilter 1`] = `
+<form
+  onSubmit={[Function]}
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <div
+    id="search-filter"
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "marginRight": "10px",
+        }
+      }
+    >
+      <button
+        className="btn not-active"
+        id={1}
+        onClick={[Function]}
+        type="button"
+      >
+        vintage
+      </button>
+    </div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "marginRight": "10px",
+        }
+      }
+    >
+      <button
+        className="btn not-active"
+        id={2}
+        onClick={[Function]}
+        type="button"
+      >
+        gws
+      </button>
+    </div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "marginRight": "10px",
+        }
+      }
+    >
+      <button
+        className="btn not-active"
+        id={3}
+        onClick={[Function]}
+        type="button"
+      >
+        ci
+      </button>
+    </div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "marginRight": "10px",
+        }
+      }
+    >
+      <button
+        className="btn not-active"
+        id={4}
+        onClick={[Function]}
+        type="button"
+      >
+        nbj
+      </button>
+    </div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "marginRight": "10px",
+        }
+      }
+    >
+      <button
+        className="btn not-active"
+        id={5}
+        onClick={[Function]}
+        type="button"
+      >
+        country
+      </button>
+    </div>
+    <div>
+      And
+      <br />
+       Comparison
+      <input
+        checked={false}
+        onChange={[Function]}
+        type="Checkbox"
+      />
+    </div>
+  </div>
+  <div>
+    <button
+      className="btn btn-primary"
+      style={
+        Object {
+          "width": "120px",
+        }
+      }
+      type="submit"
+    >
+      Filter
+    </button>
+    <button
+      className="btn btn-secondary"
+      onClick={[Function]}
+      style={
+        Object {
+          "width": "120px",
+        }
+      }
+      type="button"
+    >
+      Reset
+    </button>
+  </div>
+</form>
+`;
