@@ -2,7 +2,7 @@ import * as React from 'react';
 //import testing utilities
 import SearchFilter from "./components/SearchFilter";
 import wineList from "./wineList.json";
-import renderer from 'react-test-renderer';
+import { render, fireEvent, wait } from '@testing-library/react';
 
 let testWineList = [];
 describe("SearchFilter", () => {
