@@ -1,10 +1,10 @@
 import * as React from 'react';
-//import testing utilities
-import SearchFilter from "./components/SearchFilter";
+// import testing utilities
+import SearchFilter from "./SearchFilter";
 import wineList from "./wineList.json";
 import { render, fireEvent, wait } from '@testing-library/react';
 
-let testWineList = [];
+let stupidWineList = [];
 describe("SearchFilter", () => {
   it("rendered SearchFilter", () => {
     const setWineList = (wines) => { stupidWineList = wines };
@@ -14,4 +14,3 @@ describe("SearchFilter", () => {
     expect(component).toMatchSnapshot();
   });
 });
-
