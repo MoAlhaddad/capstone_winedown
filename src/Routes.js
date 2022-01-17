@@ -1,9 +1,10 @@
+
 import { Switch, Route } from "react-router-dom";
 import Signup from "./containers/Signup";
 import WineList from "./containers/WineList";
 import RandomWineList from "./containers/RandomWineList";
 import Survey from "./components/Survey";
-import FavoriteWines from "./containers/FavoriteWines";
+import FavoriteWines from "./containers/favoriteWines";
 
 export default (
   <Switch>

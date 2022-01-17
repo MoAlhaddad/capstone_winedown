@@ -47,7 +47,6 @@ function Paginate(props) {
       dataIndex: "country",
       key: "country",
       sorter: (a, b) => a.country > b.country,
-      sortDirections: ["descend"],
     },
   ];
   const dateCreatedColumn = {
