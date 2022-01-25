@@ -1,8 +1,11 @@
 import * as React from "react";
 // import testing utilities
 import SearchFilter from "./components/SearchFilter";
+import WinelistPage from "./containers/WineList";
+import Paginate from "./components/Paginate";
 import wineList from "./wineList.json";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import { defaultMouseEvent, inputEventOptions } from "./ReusableTestFunctions";
 import "@testing-library/jest-dom";
 
 // test('renders the search filter', () => {
@@ -25,45 +28,58 @@ window.matchMedia =
   };
 
 describe("SearchFilter", () => {
+  //Assign the component that would be rendered.
+  let component;
+  // let winelistPage;
+  //Props to pass into component to be rendered
+  const setWineList = (wines) => {
+    currentWineList = wines;
+  };
   let currentWineList = wineList.data;
+  //Assign the button that would be tested before the tests.
+  let countryFilter;
+  let vintageFilter;
+  let filterButton;
 
-  it("Check if the inputs and buttons are acting correctly", async () => {
-    const setWineList = (wines) => {
-      currentWineList = wines;
-    };
-    const component = render(
+  beforeAll(async () => {
+    // winelistPage = render(<WinelistPage />);
+    component = render(
       <SearchFilter wineList={currentWineList} setWinelist={setWineList} />
     );
-    const countryFilter = await component.getByText("country");
-    const vintageFilter = await component.getByText("vintage");
-    fireEvent(
-      countryFilter,
-      new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    // component = winelistPage.baseElement.querySelector('form#search-filter-form');
 
-    fireEvent(
-      vintageFilter,
-      new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-    const countryInput = await component.baseElement.querySelector("input#country");
-    const vintageInput = await component.baseElement.querySelector("input#vintage");
-    fireEvent.change(countryInput, { target: { value: "France" } });
-    fireEvent.change(vintageInput, { target: { value: "2015" } });
-    const expectedUnactiveFilterClassName = `btn not-active`;
-      //Close the vintage filter ,therefore making it inactive
-    fireEvent(
-      vintageFilter,
-      new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-    expect(vintageFilter.className).toEqual(expectedUnactiveFilterClassName);    
+    await waitFor(() => {
+      countryFilter = component.getByText("country");
+      vintageFilter = component.getByText("vintage");
+      filterButton = component.getByText("Filter");
+    });
+  });
+  //Html element to be retrieved.
+  let countryInput;
+  let vintageInput;
+
+  it("Check if a input hides when a filter is clicked twice.", async () => {
+    fireEvent(countryFilter, defaultMouseEvent);
+
+    fireEvent(vintageFilter, defaultMouseEvent);
+
+    await waitFor(() => {
+      countryInput = component.baseElement.querySelector("input#country");
+      vintageInput = component.baseElement.querySelector("input#vintage");
+    });
+
+    fireEvent.change(countryInput, inputEventOptions("France"));
+    fireEvent.change(vintageInput, inputEventOptions("2015"));
+
+    //Close the vintage filter ,therefore making it inactive
+    fireEvent(vintageFilter, defaultMouseEvent);
+
+    await waitFor(() => {
+      vintageInput = component.baseElement.querySelector("input#vintage");
+    });
+    
+    fireEvent(filterButton, defaultMouseEvent);
+
+    expect(vintageInput).toBeNull();
   });
 });

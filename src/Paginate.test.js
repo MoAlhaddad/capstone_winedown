@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Table } from "antd";
-import { format } from "date-fns";
 import winelist from "./wineList.json";
 // import testing utilities
 import Paginate from "./components/Paginate";
-import { render, fireEvent } from "@testing-library/react";
+import { defaultMouseEvent } from "./ReusableTestFunctions";
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import { screen } from 'rtl-simple-queries'
 import "@testing-library/jest-dom";
-
 // To prevent a TypeError: window.matchMedia is not a function
 window.matchMedia =
   window.matchMedia ||
@@ -18,38 +17,31 @@ window.matchMedia =
     };
   };
 
-const TestPaginate = () => (
-  <Paginate wineList={winelist.data} displayFavoriteWineColumn={true} />
-);
 /*
  * Do snapshot testing
  * Snapshot testing is like taking a picture of a react component.
  * Then compare it against another snapshot later on.
- */
-
+*/
 describe("Paginate Testing", () => {
-  it("Paginate", async () => {
-    const component = render(<TestPaginate />);
+  let component;
+  let countrySorter;
+
+  //Render component before all tests
+  beforeAll(() => {
+    component = render(<Paginate wineList={winelist.data} displayFavoriteWineColumn={true} />);
+    countrySorter = component.getByText("COUNTRY");
+  })
+
+  it("Check if the sorter on the ant design table is active.", async () => {
     const expectedActiveColumnClassName = "ant-table-column-sort";
-    // const expectedFirstRow = `<td class="ant-table-cell">Domaine De La Romanee Conti,Romanee Conti Grand Cru</td><td class="ant-table-cell">2005</td><td class="ant-table-cell">100.00</td><td class="ant-table-cell">A+</td><td class="ant-table-cell">4</td><td class="ant-table-cell ant-table-column-sort">France</td><td class="ant-table-cell">No</td><td class="ant-table-cell">2021/10/04 12:18 a.m.</td>`;
-    const countrySorter = component.getByText("COUNTRY");
-
-    fireEvent(
-      countrySorter,
-      new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
-
-    const countriesOnPage1 = component.container.querySelectorAll(
-      ".ant-table-row.ant-table-row-level-0"
-    );
+    
+    fireEvent(countrySorter, defaultMouseEvent);
+    
     expect(
       countrySorter.parentNode.parentNode.className.includes(
         expectedActiveColumnClassName
       )
-    ).toEqual(true);
-    // expect(countriesOnPage1[0].innerHTML).toEqual(expectedFirstRow);
-  });
+    ).toBeTruthy();
+  }); 
+
 });

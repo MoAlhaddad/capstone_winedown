@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.17.1",
@@ -59,7 +58,11 @@
   },
   "proxy": "http://localhost:5000/api",
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "query-extensions": "0.0.4",
     "react-scripts": "^4.0.3",
-    "react-unit-test-generator": "^1.11.0"
+    "react-unit-test-generator": "^1.11.0",
+    "rtl-simple-queries": "^1.0.1",
+    "testing-library-selector": "^0.2.1"
   }
 }
